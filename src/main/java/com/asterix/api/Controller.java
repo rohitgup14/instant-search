@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+
 @org.springframework.stereotype.Controller
 @RequestMapping("/api")
 public class Controller {
@@ -52,13 +54,15 @@ public class Controller {
 		List<String> values = service.search(value);
 		StringBuffer returnValue = new StringBuffer();
 		Integer counter = 1;
-		for(String v : values) {
-			returnValue.append(counter+++". ");
-			returnValue.append("\t");
-			returnValue.append(v);
-			returnValue.append("\n");
-		}
 		
+		returnValue.append("<table style=\"width:100%\">");
+		 for(String v : values) {
+			returnValue.append("<tr>");
+			returnValue.append("<td>"+counter+++". </td>");
+			returnValue.append("<td>"+v+"<td>");
+			returnValue.append("</tr>");
+		}
+		returnValue.append("</table>");
     	model.addAttribute("msg", returnValue.toString());
 		return "helloWorld";
 		
